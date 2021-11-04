@@ -3,6 +3,12 @@ import { Container, Row, Col, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 
+const HeaderTabs = ({sort, sortTable, sorts, children}) => {
+    return (
+        <th className={sort[sorts] ? sort[sorts] : 'all'} onClick={()=>sortTable(sorts)}>{children}</th>
+    );
+};
+
 function App() {
     const [tableData, setTableData] = useState([]);
     const [sort, setSort] = useState({});
@@ -48,13 +54,13 @@ function App() {
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th className={sort['FirstName'] ? sort['FirstName'] : 'all'} onClick={()=>sortTable('FirstName')}>First Name</th>
-                            <th className={sort['LastName'] ? sort['LastName'] : 'all'} onClick={()=>sortTable('LastName')}>Last Name</th>
-                            <th className={sort['FatherName'] ? sort['FatherName'] : 'all'} onClick={()=>sortTable('FatherName')}>Father Name</th>
-                            <th className={sort['Login'] ? sort['Login'] : 'all'} onClick={()=>sortTable('Login')}>Login</th>
-                            <th className={sort['Password'] ? sort['Password'] : 'all'} onClick={()=>sortTable('Password')}>Password</th>
-                            <th className={sort['Phone'] ? sort['Phone'] : 'all'} onClick={()=>sortTable('Phone')}>Phone</th>
-                            <th className={sort['Email'] ? sort['Email'] : 'all'} onClick={()=>sortTable('Email')}>Email</th>
+                            <HeaderTabs sorts={'FirstName'} sort={sort} sortTable={sortTable}>First Name</HeaderTabs>
+                            <HeaderTabs sorts={'LastName'} sort={sort} sortTable={sortTable}>Last Name</HeaderTabs>
+                            <HeaderTabs sorts={'FatherName'} sort={sort} sortTable={sortTable}>FatherName</HeaderTabs>
+                            <HeaderTabs sorts={'Login'} sort={sort} sortTable={sortTable}>Login</HeaderTabs>
+                            <HeaderTabs sorts={'Password'} sort={sort} sortTable={sortTable}>Password</HeaderTabs>
+                            <HeaderTabs sorts={'Phone'} sort={sort} sortTable={sortTable}>Phone</HeaderTabs>
+                            <HeaderTabs sorts={'Email'} sort={sort} sortTable={sortTable}>Email</HeaderTabs>
                         </tr>
                         </thead>
                         <tbody>
